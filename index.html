@@ -46,18 +46,31 @@
 
     .card {
       background-color: #1a1a1a;
-      padding: 20px;
       border-radius: 12px;
-      text-align: center;
       text-decoration: none;
       color: white;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      overflow: hidden;
       transition: transform 0.2s, background-color 0.2s;
     }
 
     .card:hover {
       transform: translateY(-5px);
       background-color: #2c2c2c;
+    }
+
+    .card-header {
+      padding: 20px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .card-description {
+      background-color: #2a2a2a;
+      padding: 15px;
+      font-size: 14px;
+      color: #ccc;
+      text-align: center;
     }
 
     @media (min-width: 600px) {
@@ -74,9 +87,21 @@
   <h1>Welcome to AiRunner</h1>
 
   <div class="card-container">
-    <a href="social-media-assistant.html" class="card">Social Media Assistant</a>
-    <a href="social-media-agency.html" class="card">Social Media Agency</a>
-    <a href="chat-automation.html" class="card">Chat Automation</a>
+
+    <a href="social-media-assistant.html" class="card">
+      <div class="card-header">Social Media Assistant</div>
+      <div class="card-description">
+        Expand your Social Media presence with this Chrome Extension
+      </div>
+    </a>
+
+    <a href="social-media-agency.html" class="card">
+      <div class="card-header">Social Media Agency</div>
+      <div class="card-description">
+        Expand your Social Media presence with our expertise
+      </div>
+    </a>
+
   </div>
 
 </body>
