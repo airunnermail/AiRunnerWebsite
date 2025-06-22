@@ -2,27 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>AIReply – Home</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AiRunner - Main Page</title>
   <style>
-    body{font-family:sans-serif;margin:0;padding:2rem;text-align:center}
-    nav a{margin:0 .75rem;text-decoration:none;color:#0366d6}
-    nav a:hover{text-decoration:underline}
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      background-color: #333;
+      border-radius: 50%;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 400px;
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background-color: #2c2c2c;
+    }
+
+    @media (min-width: 600px) {
+      .card-container {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>AIReply 🪄</h1>
 
-  <p>Welcome! Choose where you’d like to go:</p>
+  <div class="logo">LOGO</div>
+  <h1>Welcome to AiRunner</h1>
 
-  <nav>
-    <a href="instructions.html">Setup / Instructions</a>
-    <a href="email-confirmation.html">Email Confirmed</a>
-  </nav>
+  <div class="card-container">
+    <a href="social-media-assistant.html" class="card">Social Media Assistant</a>
+    <a href="social-media-agency.html" class="card">Social Media Agency</a>
+    <a href="chat-automation.html" class="card">Chat Automation</a>
+  </div>
 
-  <p style="margin-top:3rem;font-size:.9rem;color:#666">
-    (This page is served from <code>main.html</code> – rename it to
-    <code>index.html</code> later if you want it to open at the bare root.)
-  </p>
 </body>
 </html>
