@@ -32,11 +32,14 @@
       overflow:hidden;
       box-shadow:0 4px 6px rgba(0,0,0,.3);
       transition:transform .2s;
+      background:#1a1a1a;                /* base black */
     }
     .card:hover{transform:translateY(-5px);}
-    .card-link{                          /* invisible overlay = whole card is a link */
-      position:absolute;inset:0;
-      z-index:10;
+    /* overlay that makes the whole card clickable */
+    .card-link{
+      position:absolute;
+      inset:0;                           /* cover the whole card */
+      z-index:1;                         /* behind footer but in front elsewhere */
     }
 
     .card-header{
@@ -46,20 +49,29 @@
       text-align:center;
     }
     .card-description{
-      background:#2a2a2a;
+      background:#2a2a2a;                /* grey section */
       padding:15px;
       font-size:14px;
       color:#ccc;
       text-align:center;
     }
+    /* footer sits above overlay so its own links can be clicked */
     .card-footer{
+      position:relative;
+      z-index:2;
       background:#1a1a1a;
       padding:15px;
       font-size:14px;
-      line-height:1.6;
       text-align:center;
+      line-height:1.6;
     }
-    .card-footer a{color:#4fa3ff;text-decoration:underline;}
+    .card-footer a{
+      color:#fff;                        /* white links */
+      text-decoration:underline;
+    }
+    .card-footer a:hover{
+      text-decoration:none;
+    }
 
     @media(min-width:600px){
       .card-container{flex-direction:row;justify-content:space-between;}
@@ -78,7 +90,7 @@
   <h1>Welcome to AiRunner</h1>
 
   <div class="card-container">
-    <!---- Chrome-extension card (black-grey-black) -->
+    <!-- Chrome-extension card (black → grey → black) -->
     <div class="card">
       <a href="social-media-assistant.html" class="card-link" aria-label="Open Social Media Assistant"></a>
       <div class="card-header">Social Media Assistant</div>
@@ -86,15 +98,17 @@
         Expand your Social Media presence with this Chrome Extension
       </div>
       <div class="card-footer">
-        <strong>Pricing:</strong> 7-day free trial, $19.99 / month or $179.99 / year<br>
-        <a href="https://airunnersocialmediaassistant.tawk.help/article/what-can-you-do-with-airunners-social-media-assistant" target="_blank" rel="noopener">What this product does?</a><br>
+        <strong>Pricing:</strong> 7-day free trial, $19.99&nbsp;/&nbsp;mo or $179.99&nbsp;/&nbsp;yr<br>
+        <a href="https://airunnersocialmediaassistant.tawk.help/article/what-can-you-do-with-airunners-social-media-assistant" target="_blank" rel="noopener">
+          What this product does?
+        </a><br>
         <a href="https://airunnersocialmediaassistant.tawk.help/article/terms-of-service-ai-runner-chrome-extension" target="_blank" rel="noopener">
-          Terms & Conditions, Privacy Policy, Refund Policy
+          Terms &amp; Conditions, Privacy Policy, Refund Policy
         </a>
       </div>
     </div>
 
-    <!---- Second card (unchanged) -->
+    <!-- Second card (unchanged) -->
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxs1MnCBcrYd8jwndHCZ-n6XgjeXRWS-NebdE3352aynVbmQ/viewform?usp=header" class="card" style="text-decoration:none;color:inherit;">
       <div class="card-header">Social Media Agency</div>
       <div class="card-description">
