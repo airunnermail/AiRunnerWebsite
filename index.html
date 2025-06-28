@@ -1,11 +1,3 @@
-Here’s the updated file.
-Key changes — for the first card only:
-
-* Added **`.card-footer`** right after the description so the card now reads **black (header) → grey (description) → black (footer)**.
-* Footer lists pricing and the two requested links.
-* Added styling for `.card-footer` and footer links.
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,124 +5,103 @@ Key changes — for the first card only:
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AiRunner - Main Page</title>
   <style>
-    body {
-      margin: 0;
-      background-color: #000;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
+    /* — Base page — */
+    body{
+      margin:0;
+      background:#000;
+      color:#fff;
+      font-family:"Segoe UI",sans-serif;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:20px;
+    }
+    h1{font-size:24px;margin:40px 0;text-align:center;}
+
+    /* — Cards — */
+    .card-container{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      width:100%;
+      max-width:400px;
+    }
+    .card{
+      position:relative;                 /* needed for overlay link  */
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 4px 6px rgba(0,0,0,.3);
+      transition:transform .2s;
+    }
+    .card:hover{transform:translateY(-5px);}
+    .card-link{                          /* invisible overlay = whole card is a link */
+      position:absolute;inset:0;
+      z-index:10;
     }
 
-    h1 {
-      font-size: 24px;
-      margin-bottom: 40px;
-      text-align: center;
+    .card-header{
+      background:#1a1a1a;
+      padding:20px;
+      font-size:18px;
+      text-align:center;
+    }
+    .card-description{
+      background:#2a2a2a;
+      padding:15px;
+      font-size:14px;
+      color:#ccc;
+      text-align:center;
+    }
+    .card-footer{
+      background:#1a1a1a;
+      padding:15px;
+      font-size:14px;
+      line-height:1.6;
+      text-align:center;
+    }
+    .card-footer a{color:#4fa3ff;text-decoration:underline;}
+
+    @media(min-width:600px){
+      .card-container{flex-direction:row;justify-content:space-between;}
     }
 
-    .card-container {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-width: 400px;
-      gap: 20px;
-    }
-
-    .card {
-      background-color: #1a1a1a;            /* black section */
-      border-radius: 12px;
-      text-decoration: none;
-      color: white;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      overflow: hidden;
-      transition: transform 0.2s, background-color 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      background-color: #2c2c2c;
-    }
-
-    .card-header {
-      padding: 20px;
-      font-size: 18px;
-      text-align: center;
-    }
-
-    .card-description {
-      background-color: #2a2a2a;            /* grey section */
-      padding: 15px;
-      font-size: 14px;
-      color: #ccc;
-      text-align: center;
-    }
-
-    /* NEW FOOTER */
-    .card-footer {
-      background-color: #1a1a1a;            /* black again */
-      padding: 15px;
-      font-size: 14px;
-      text-align: center;
-      line-height: 1.6;
-    }
-    .card-footer a {
-      color: #4fa3ff;                       /* readable link color */
-      text-decoration: underline;
-    }
-
-    @media (min-width: 600px) {
-      .card-container {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-    }
-
-    .logo-circle {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-top: 40px;
-      margin-bottom: 20px;
-      border: 2px solid #444;
+    /* — Logo — */
+    .logo-circle{
+      width:120px;height:120px;border-radius:50%;
+      object-fit:cover;margin:40px 0 20px;border:2px solid #444;
     }
   </style>
 </head>
 <body>
 
   <img src="icon128.png" alt="AiRunner Logo" class="logo-circle" />
-
   <h1>Welcome to AiRunner</h1>
 
   <div class="card-container">
-
-    <!-- Chrome Extension card with new footer -->
-    <a href="social-media-assistant.html" class="card">
+    <!---- Chrome-extension card (black-grey-black) -->
+    <div class="card">
+      <a href="social-media-assistant.html" class="card-link" aria-label="Open Social Media Assistant"></a>
       <div class="card-header">Social Media Assistant</div>
       <div class="card-description">
         Expand your Social Media presence with this Chrome Extension
       </div>
       <div class="card-footer">
-        <strong>Pricing:</strong> 7-day free trial,&nbsp;$19.99/month&nbsp;or&nbsp;$179.99/year<br>
+        <strong>Pricing:</strong> 7-day free trial, $19.99 / month or $179.99 / year<br>
         <a href="https://airunnersocialmediaassistant.tawk.help/article/what-can-you-do-with-airunners-social-media-assistant" target="_blank" rel="noopener">What this product does?</a><br>
         <a href="https://airunnersocialmediaassistant.tawk.help/article/terms-of-service-ai-runner-chrome-extension" target="_blank" rel="noopener">
-          Terms & Conditions, Privacy Policy, and Refund Policy
+          Terms & Conditions, Privacy Policy, Refund Policy
         </a>
       </div>
-    </a>
+    </div>
 
-    <!-- Second card unchanged -->
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxs1MnCBcrYd8jwndHCZ-n6XgjeXRWS-NebdE3352aynVbmQ/viewform?usp=header" class="card">
+    <!---- Second card (unchanged) -->
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxs1MnCBcrYd8jwndHCZ-n6XgjeXRWS-NebdE3352aynVbmQ/viewform?usp=header" class="card" style="text-decoration:none;color:inherit;">
       <div class="card-header">Social Media Agency</div>
       <div class="card-description">
         Expand your Social Media presence with our expertise
       </div>
     </a>
-
   </div>
 
 </body>
 </html>
-```
