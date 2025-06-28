@@ -1,3 +1,11 @@
+Here’s the updated file.
+Key changes — for the first card only:
+
+* Added **`.card-footer`** right after the description so the card now reads **black (header) → grey (description) → black (footer)**.
+* Footer lists pricing and the two requested links.
+* Added styling for `.card-footer` and footer links.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +39,7 @@
     }
 
     .card {
-      background-color: #1a1a1a;
+      background-color: #1a1a1a;            /* black section */
       border-radius: 12px;
       text-decoration: none;
       color: white;
@@ -52,11 +60,24 @@
     }
 
     .card-description {
-      background-color: #2a2a2a;
+      background-color: #2a2a2a;            /* grey section */
       padding: 15px;
       font-size: 14px;
       color: #ccc;
       text-align: center;
+    }
+
+    /* NEW FOOTER */
+    .card-footer {
+      background-color: #1a1a1a;            /* black again */
+      padding: 15px;
+      font-size: 14px;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .card-footer a {
+      color: #4fa3ff;                       /* readable link color */
+      text-decoration: underline;
     }
 
     @media (min-width: 600px) {
@@ -66,18 +87,15 @@
       }
     }
 
-
     .logo-circle {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%; /* makes it a circle */
-  object-fit: cover;  /* ensures the image fills the circle properly */
-  margin-top: 40px;
-  margin-bottom: 20px;
-  border: 2px solid #444; /* optional: adds a subtle border */
-}
-
-
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      border: 2px solid #444;
+    }
   </style>
 </head>
 <body>
@@ -88,13 +106,22 @@
 
   <div class="card-container">
 
+    <!-- Chrome Extension card with new footer -->
     <a href="social-media-assistant.html" class="card">
       <div class="card-header">Social Media Assistant</div>
       <div class="card-description">
         Expand your Social Media presence with this Chrome Extension
       </div>
+      <div class="card-footer">
+        <strong>Pricing:</strong> 7-day free trial,&nbsp;$19.99/month&nbsp;or&nbsp;$179.99/year<br>
+        <a href="https://airunnersocialmediaassistant.tawk.help/article/what-can-you-do-with-airunners-social-media-assistant" target="_blank" rel="noopener">What this product does?</a><br>
+        <a href="https://airunnersocialmediaassistant.tawk.help/article/terms-of-service-ai-runner-chrome-extension" target="_blank" rel="noopener">
+          Terms & Conditions, Privacy Policy, and Refund Policy
+        </a>
+      </div>
     </a>
 
+    <!-- Second card unchanged -->
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxs1MnCBcrYd8jwndHCZ-n6XgjeXRWS-NebdE3352aynVbmQ/viewform?usp=header" class="card">
       <div class="card-header">Social Media Agency</div>
       <div class="card-description">
@@ -106,3 +133,4 @@
 
 </body>
 </html>
+```
