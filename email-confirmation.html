@@ -5,14 +5,43 @@
   <title>AIReply - Email Confirmation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: sans-serif; text-align: center; margin-top: 10vh; }
-    .brand { font-size: 3em; font-weight: bold; margin-bottom: 0.5em; }
-    .heading { font-size: 1.8em; margin-bottom: 1em; }
-    .msg { font-size: 1.2em; }
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 10vh;
+    }
+
+    .brand {
+      font-size: 3em;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5em;
+      margin-bottom: 0.5em;
+    }
+
+    .brand img {
+      height: 48px;
+      width: 48px;
+    }
+
+    .heading {
+      font-size: 1.8em;
+      margin-bottom: 1em;
+    }
+
+    .msg {
+      font-size: 1.2em;
+    }
   </style>
 </head>
 <body>
-  <div class="brand">AiRunner</div>
+  <div class="brand">
+    <img src="icon128.png" alt="AiRunner Logo">
+    AiRunner
+  </div>
+
   <h1 class="heading">Thank you for confirming your email!</h1>
   <div class="msg">
     You can now return to the extension and sign in.<br>
