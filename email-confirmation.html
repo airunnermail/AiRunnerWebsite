@@ -1,51 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>AIReply - Email Confirmation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AiRunner - Email Confirmed</title>
   <style>
     body {
-      font-family: sans-serif;
-      text-align: center;
-      margin-top: 10vh;
-    }
-
-    .brand {
-      font-size: 3em;
-      font-weight: bold;
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      gap: 0.5em;
-      margin-bottom: 0.5em;
+      padding: 20px;
     }
 
-    .brand img {
-      height: 48px;
-      width: 48px;
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
     }
 
-    .heading {
-      font-size: 1.8em;
-      margin-bottom: 1em;
+    .logo-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      border: 2px solid #444;
+    }
+
+    .confirmation-box {
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      padding: 30px 20px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     }
 
     .msg {
-      font-size: 1.2em;
+      font-size: 16px;
+      color: #ccc;
+      margin-top: 10px;
+    }
+
+    small {
+      display: block;
+      margin-top: 8px;
+      color: #777;
     }
   </style>
 </head>
 <body>
-  <div class="brand">
-    <img src="icon128.png" alt="AiRunner Logo">
-    AiRunner
+
+  <img src="icon128.png" alt="AiRunner Logo" class="logo-circle" />
+
+  <h1>AiRunner</h1>
+
+  <div class="confirmation-box">
+    <h2>Thank you for confirming your email!</h2>
+    <div class="msg">
+      You can now return to the extension and sign in.
+      <small>(You may close this tab.)</small>
+    </div>
   </div>
 
-  <h1 class="heading">Thank you for confirming your email!</h1>
-  <div class="msg">
-    You can now return to the extension and sign in.<br>
-    <small>(You may close this tab.)</small>
-  </div>
 </body>
 </html>
