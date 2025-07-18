@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AiRunner - Main Page</title>
   <style>
+    :root {
+      --primary-accent-bg: #03a84e;
+    }
+
     body {
       margin: 0;
       background-color: #f9f9f9;
@@ -53,6 +57,16 @@
       font-weight: bold;
     }
 
+    .card-header.cta {
+      background-color: var(--primary-accent-bg);
+      color: #fff;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
     .card-description {
       background-color: #f5f5f5;
       padding: 15px;
@@ -88,7 +102,7 @@
   <div class="card-container">
 
     <a href="social-media-assistant.html" class="card">
-      <div class="card-header">Social Media Assistant</div>
+      <div class="card-header cta">Social Media Assistant</div>
       <div class="card-description">
         Expand your Social Media presence with this Chrome Extension
       </div>
