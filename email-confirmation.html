@@ -108,39 +108,42 @@
     
     async function confirmEmail() {
   try {
-    // Get token from URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
-    const type = urlParams.get('type');
+    // Use Supabase's standard confirmation flow
+    const { data, error } = await supabase.auth.getSessionFromUrl({ 
+      storeSession: true 
+    });
     
-    if (token && type === 'signup') {
-      // Confirm the email with the token
-      const { data, error } = await supabase.auth.verifyOtp({
-        token_hash: token,
-        type: 'signup'
-      });
-      
-      if (error) {
-        // Handle error
-        showError(error.message);
-      } else {
-        // Handle success
-        showSuccess();
-      }
+    if (error) {
+      document.getElementById('status').innerHTML = `
+        <h2 class="error">❌ Confirmation Failed</h2>
+        <div class="msg error">
+          ${error.message}<br><br>
+          Please try again or contact support if the problem persists.
+        </div>
+      `;
     } else {
-      // Try the standard Supabase flow
-      const { data, error } = await supabase.auth.getSessionFromUrl({ 
-        storeSession: true 
-      });
+      document.getElementById('status').innerHTML = `
+        <h2 class="success">✅ Email Confirmed!</h2>
+        <div class="msg success">
+          Thank you for confirming your email!<br><br>
+          You can now return to the extension and sign in.
+          <small>(You may close this tab.)</small>
+        </div>
+      `;
       
-      if (error) {
-        showError(error.message);
-      } else {
-        showSuccess();
-      }
+      // Auto-close after 5 seconds
+      setTimeout(() => {
+        window.close();
+      }, 5000);
     }
   } catch (err) {
-    showError(err.message);
+    document.getElementById('status').innerHTML = `
+      <h2 class="error">❌ Confirmation Failed</h2>
+      <div class="msg error">
+        ${err.message}<br><br>
+        Please try again or contact support if the problem persists.
+      </div>
+    `;
   }
 }
     
