@@ -53,6 +53,33 @@
       margin-top: 8px;
       color: #999;
     }
+
+    .loading {
+      color: #666;
+    }
+
+    .success {
+      color: #03a84e;
+    }
+
+    .error {
+      color: #dc3545;
+    }
+
+    .spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #03a84e;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -62,12 +89,67 @@
   <h1>AiRunner</h1>
 
   <div class="confirmation-box">
-    <h2>Thank you for confirming your email!</h2>
-    <div class="msg">
-      You can now return to the extension and sign in.
-      <small>(You may close this tab.)</small>
+    <div id="status">
+      <div class="spinner"></div>
+      <h2>Confirming your email...</h2>
+      <div class="msg loading">
+        Please wait while we verify your email address.
+      </div>
     </div>
   </div>
 
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script>
+    // Initialize Supabase client
+    const supabaseUrl = 'https://sjfhnmcvxkdvvtqhrkka.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqZmhubWN2eGtkdnZ0cWhya2thIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxNzA3MTIsImV4cCI6MjA2NTc0NjcxMn0.FVRBOd6ONPz1njgtLJQSKvmsh9BEhDN1utxJSIn_HXs';
+    
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    
+    async function confirmEmail() {
+      try {
+        // Parse the URL and store the session
+        const { data, error } = await supabase.auth.getSessionFromUrl({ 
+          storeSession: true 
+        });
+        
+        if (error) {
+          document.getElementById('status').innerHTML = `
+            <h2 class="error">❌ Confirmation Failed</h2>
+            <div class="msg error">
+              ${error.message}<br><br>
+              Please try again or contact support if the problem persists.
+            </div>
+          `;
+        } else {
+          document.getElementById('status').innerHTML = `
+            <h2 class="success">✅ Email Confirmed!</h2>
+            <div class="msg success">
+              Thank you for confirming your email!<br><br>
+              You can now return to the extension and sign in.
+              <small>(You may close this tab.)</small>
+            </div>
+          `;
+          
+          // Auto-close after 5 seconds
+          setTimeout(() => {
+            window.close();
+          }, 5000);
+        }
+      } catch (err) {
+        document.getElementById('status').innerHTML = `
+          <h2 class="error">❌ Confirmation Failed</h2>
+          <div class="msg error">
+            ${err.message}<br><br>
+            Please try again or contact support if the problem persists.
+          </div>
+        `;
+      }
+    }
+    
+    // Run confirmation when page loads
+    confirmEmail();
+  </script>
+
 </body>
-</html>
+</html> 
