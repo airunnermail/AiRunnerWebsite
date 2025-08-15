@@ -107,45 +107,42 @@
     const supabase = createClient(supabaseUrl, supabaseKey);
     
     async function confirmEmail() {
-      try {
-        // Parse the URL and store the session
-        const { data, error } = await supabase.auth.getSessionFromUrl({ 
-          storeSession: true 
-        });
-        
-        if (error) {
-          document.getElementById('status').innerHTML = `
-            <h2 class="error">❌ Confirmation Failed</h2>
-            <div class="msg error">
-              ${error.message}<br><br>
-              Please try again or contact support if the problem persists.
-            </div>
-          `;
-        } else {
-          document.getElementById('status').innerHTML = `
-            <h2 class="success">✅ Email Confirmed!</h2>
-            <div class="msg success">
-              Thank you for confirming your email!<br><br>
-              You can now return to the extension and sign in.
-              <small>(You may close this tab.)</small>
-            </div>
-          `;
-          
-          // Auto-close after 5 seconds
-          setTimeout(() => {
-            window.close();
-          }, 5000);
-        }
-      } catch (err) {
-        document.getElementById('status').innerHTML = `
-          <h2 class="error">❌ Confirmation Failed</h2>
-          <div class="msg error">
-            ${err.message}<br><br>
-            Please try again or contact support if the problem persists.
-          </div>
-        `;
+  try {
+    // Get token from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    const type = urlParams.get('type');
+    
+    if (token && type === 'signup') {
+      // Confirm the email with the token
+      const { data, error } = await supabase.auth.verifyOtp({
+        token_hash: token,
+        type: 'signup'
+      });
+      
+      if (error) {
+        // Handle error
+        showError(error.message);
+      } else {
+        // Handle success
+        showSuccess();
+      }
+    } else {
+      // Try the standard Supabase flow
+      const { data, error } = await supabase.auth.getSessionFromUrl({ 
+        storeSession: true 
+      });
+      
+      if (error) {
+        showError(error.message);
+      } else {
+        showSuccess();
       }
     }
+  } catch (err) {
+    showError(err.message);
+  }
+}
     
     // Run confirmation when page loads
     confirmEmail();
